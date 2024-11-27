@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <Button
+        android:id="@+id/portrait"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/portrait" />
+
+    <Button
+        android:id="@+id/landscape"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/landscape" />
+
+    <Button
+        android:id="@+id/unspecified"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/unspecified" />
+
+    <Button
+        android:id="@+id/sensor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/sensor" />
+
+    <Button
+        android:id="@+id/sensor_portrait"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/sensor_portrait" />
+
+    <Button
+        android:id="@+id/sensor_landscape"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/sensor_landscape" />
+
+    <Button
+        android:id="@+id/full_sensor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/full_sensor" />
+
+    <Button
+        android:id="@+id/full_user"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/full_user" />
+
+    <Button
+        android:id="@+id/locked"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/locked" />
+
+</LinearLayout>
