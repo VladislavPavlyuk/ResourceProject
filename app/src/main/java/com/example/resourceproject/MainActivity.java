@@ -116,36 +116,35 @@ public class MainActivity extends AppCompatActivity {
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		switch (item.getItemId()) {
-			case R.id.unspecified:
+			int itemId = item.getItemId();
+			//
+			if (itemId == R.id.unspecified) {
 				setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
-				return true;
-			case R.id.sensor:
+			}
+			else if (itemId == R.id.sensor) {
 				setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR);
-				return true;
-			case R.id.sensor_portrait:
+			}
+			else if (itemId == R.id.sensor_portrait) {
 				setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-				return true;
-			case R.id.sensor_landscape:
+			}
+			else if (itemId == R.id.sensor_landscape) {
 				setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-				return true;
-			case R.id.full_sensor:
+			}
+			else if (itemId == R.id.full_sensor) {
 				setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_FULL_SENSOR);
-				return true;
-			case R.id.full_user:
+			}
+			else if (itemId == R.id.full_user) {
 				setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_USER);
-				return true;
-			case R.id.portrait:
+			}
+			else if (itemId == R.id.portrait) {
 				setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-				return true;
-			case R.id.landscape:
+			}
+			else if (itemId == R.id.landscape) {
 				setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-				return true;
-			case R.id.locked:
+			}
+			else if (itemId == R.id.locked) {
 				setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LOCKED);
-				return true;
-			default:
-				return super.onOptionsItemSelected(item);
+			}
+			return super.onOptionsItemSelected(item);
 		}
 	}
-}
