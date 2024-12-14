@@ -1,5 +1,7 @@
 package com.example.resourceproject;
 
+import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
@@ -29,6 +31,10 @@ public class MainActivity extends AppCompatActivity {
 		String localeTag = preferences.getString("locale", Locale.ENGLISH.toLanguageTag());
 		//setLocale(Locale.forLanguageTag(localeTag));
 		//
+		//Встановлення локалізованого тексту із ресурсів у заголовок актівіті
+		if (getSupportActionBar() != null) {
+			getSupportActionBar().setTitle(R.string.app_name);
+		}
 		super.onCreate(savedInstanceState);
 		EdgeToEdge.enable(this);
 		setContentView(R.layout.activity_main);
@@ -37,6 +43,21 @@ public class MainActivity extends AppCompatActivity {
 			v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
 			return insets;
 		});
+	}
+
+	@Override
+	protected void attachBaseContext(Context contextBase) {
+		//Приклад отримання налаштувань з SharedPreferences
+		SharedPreferences preferences = contextBase.getSharedPreferences("settings", MODE_PRIVATE);
+		String localeTag = preferences.getString("locale", Locale.ENGLISH.toLanguageTag());
+		//Новий спосіб встановлення локалізації
+		Locale locale = Locale.forLanguageTag(localeTag);
+		Locale.setDefault(locale);
+		Configuration configuration = new Configuration();
+		configuration.setLocale(locale);
+		Context newContext = contextBase.createConfigurationContext(configuration);
+		//
+		super.attachBaseContext(newContext);
 	}
 	
 	//Створення Option Menu
@@ -47,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
 		return super.onCreateOptionsMenu(menu);
 	}
 	
-	/*/Обробка натискання на пункти меню
+	//Обробка натискання на пункти меню
 	@Override
 	public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 		int itemId = item.getItemId();
@@ -62,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
 				setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 			}
 		}
-		else if (itemId == R.id.landscape) {
+		else if (itemId == R.id.landscape) {	//landscapeMenu
 			Toast toast = Toast.makeText(this, R.string.landscape, Toast.LENGTH_LONG);
 			toast.addCallback(new Toast.Callback() {
 				@Override
@@ -104,6 +125,8 @@ public class MainActivity extends AppCompatActivity {
 		}
 		//Themes...
 		return super.onOptionsItemSelected(item);
+
+
 	}
 	
 	private void setLocale(Locale locale){
@@ -112,8 +135,17 @@ public class MainActivity extends AppCompatActivity {
 		Configuration configuration = resources.getConfiguration();
 		configuration.setLocale(locale);
 		resources.updateConfiguration(configuration, resources.getDisplayMetrics());
-	}*/
+		/*getBaseContext().getResources().updateConfiguration(
+				configuration, resources.getDisplayMetrics()
+		);
+		recreate();*/
+		//2
+		/*Intent 	intent = new Intent(this, MainActivity.class);
+		startActivity(intent);
+		finish();*/
+	}
 
+		/*
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 			int itemId = item.getItemId();
@@ -146,5 +178,6 @@ public class MainActivity extends AppCompatActivity {
 				setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LOCKED);
 			}
 			return super.onOptionsItemSelected(item);
-		}
+		}*/
+
 	}
