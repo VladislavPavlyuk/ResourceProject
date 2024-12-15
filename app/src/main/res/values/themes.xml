@@ -3,6 +3,11 @@
     <style name="Base.Theme.ResourceProject" parent="Theme.Material3.DayNight">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+
+        <item name="colorPrimary">@color/Light.Background</item>
+        <item name="colorSecondary">@color/Dark.Background</item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:background">#DBCBCB</item>
     </style>
 
     <style name="Theme.ResourceProject" parent="Base.Theme.ResourceProject" />
