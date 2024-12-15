@@ -36,6 +36,8 @@ public class MainActivity extends AppCompatActivity {
 			getSupportActionBar().setTitle(R.string.app_name);
 		}
 		super.onCreate(savedInstanceState);
+		setTheme(getSavedThemePreference());
+		setContentView(R.layout.activity_main);
 		EdgeToEdge.enable(this);
 		setContentView(R.layout.activity_main);
 		ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
@@ -44,6 +46,18 @@ public class MainActivity extends AppCompatActivity {
 			return insets;
 		});
 	}
+
+	/*private void saveThemePreference(int themeId) {
+		SharedPreferences preferences = getSharedPreferences("theme_prefs", MODE_PRIVATE);
+		SharedPreferences.Editor editor = preferences.edit();
+		editor.putInt("theme_id", themeId);
+		editor.apply();
+	}*/
+	private int getSavedThemePreference() {
+		SharedPreferences preferences = getSharedPreferences("theme_prefs", MODE_PRIVATE);
+		return preferences.getInt("theme_id", R.style.Base_Theme_ResourceProject);
+	}
+
 
 	@Override
 	protected void attachBaseContext(Context contextBase) {
@@ -56,6 +70,7 @@ public class MainActivity extends AppCompatActivity {
 		Configuration configuration = new Configuration();
 		configuration.setLocale(locale);
 		Context newContext = contextBase.createConfigurationContext(configuration);
+
 		//
 		super.attachBaseContext(newContext);
 	}
@@ -124,9 +139,31 @@ public class MainActivity extends AppCompatActivity {
 			recreate();
 		}
 		//Themes...
+		else if (itemId == R.id.lightThemeMenu) {
+			setTheme(R.style.Theme_ResourceProject);
+			saveThemePreference(R.style.Base_Theme_ResourceProject);
+			recreate();
+			}
+		else if (itemId == R.id.darkThemeMenu) {
+			setTheme(R.style.Theme_ResourceProject);
+			saveThemePreference(R.style.Theme_ResourceProject);
+			recreate();
+		}
+		else if (itemId == R.id.coloredThemeMenu) {
+			setTheme(R.style.Theme_ResourceProject);
+			saveThemePreference(R.style.Theme_ResourceProject);
+			recreate();
+		}
 		return super.onOptionsItemSelected(item);
 
 
+	}
+
+	private void saveThemePreference(int themeId) {
+		SharedPreferences preferences = getSharedPreferences("theme_prefs", MODE_PRIVATE);
+		SharedPreferences.Editor editor = preferences.edit();
+		editor.putInt("theme_id", themeId);
+		editor.apply();
 	}
 	
 	private void setLocale(Locale locale){
