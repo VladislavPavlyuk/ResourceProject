@@ -14,12 +14,12 @@
     <color name="Dark.Button.Font">#610B0B</color>
     <color name="Dark.Button.Border">#450404</color>
 
-    <!-- для кольорової, наприклад синьої теми: -->
-    <color name="Blue.Background">#0010FD</color>
-    <color name="Blue.Font">#39347E</color>
-    <color name="Blue.Button.Background">#201D97</color>
-    <color name="Blue.Button.Font">#413990</color>
-    <color name="Blue.Button.Border">#040740</color>
+    <!-- для кольорової, наприклад червоної теми: -->
+    <color name="Red.Background">#D05211</color>
+    <color name="Red.Font">#B14033</color>
+    <color name="Red.Button.Background">#C3495B</color>
+    <color name="Red.Button.Font">#C82881</color>
+    <color name="Red.Button.Border">#380440</color>
 
 
 </resources>

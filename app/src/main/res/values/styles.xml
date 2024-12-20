@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="ColorButtonShape" parent="ShapeAppearance.Material3.SmallComponent">
+        <!--Додайте налаштування теми-->
+    </style>
+
+    <!-- Color Theme-->
+    <style name="ColorButton" parent="Widget.Material3.Button">
+        <item name="backgroundTint">@color/Red.Button.Background</item>
+        <item name="android:textColor">@color/Light.Font</item>
+        <item name="strokeColor">@color/Red.Button.Border</item>
+        <item name="strokeWidth">3dp</item>
+        <item name="shapeAppearanceOverlay">@style/ColorButtonShape</item>
+    </style>
+
+    <style name="Color.Theme.ResourceProject" parent="ColorButtonShape">
+        <item name="colorOnPrimary">#E7E705</item>
+        <!--item name="materialButtonStyle">@style/ColorButton</item-->
+    </style>
+</resources>

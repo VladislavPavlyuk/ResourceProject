@@ -35,6 +35,9 @@ public class MainActivity extends AppCompatActivity {
 		if (getSupportActionBar() != null) {
 			getSupportActionBar().setTitle(R.string.app_name);
 		}
+		//Theme
+		setTheme(R.style.Light_Theme_ResourceProject);
+
 		super.onCreate(savedInstanceState);
 		setTheme(getSavedThemePreference());
 		setContentView(R.layout.activity_main);
@@ -55,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
 	}*/
 	private int getSavedThemePreference() {
 		SharedPreferences preferences = getSharedPreferences("theme_prefs", MODE_PRIVATE);
-		return preferences.getInt("theme_id", R.style.Base_Theme_ResourceProject);
+		return preferences.getInt("theme_id", R.style.Light_Theme_ResourceProject);
 	}
 
 
@@ -140,23 +143,21 @@ public class MainActivity extends AppCompatActivity {
 		}
 		//Themes...
 		else if (itemId == R.id.lightThemeMenu) {
-			setTheme(R.style.Theme_ResourceProject);
-			saveThemePreference(R.style.Base_Theme_ResourceProject);
+			setTheme(R.style.Light_ResourceProject);
+			saveThemePreference(R.style.Light_ResourceProject);
 			recreate();
 			}
 		else if (itemId == R.id.darkThemeMenu) {
-			setTheme(R.style.Theme_ResourceProject);
-			saveThemePreference(R.style.Theme_ResourceProject);
+			setTheme(R.style.Dark_ResourceProject);
+			saveThemePreference(R.style.Dark_ResourceProject);
 			recreate();
 		}
 		else if (itemId == R.id.coloredThemeMenu) {
-			setTheme(R.style.Theme_ResourceProject);
-			saveThemePreference(R.style.Theme_ResourceProject);
+			setTheme(R.style.Color_Theme_ResourceProject);
+			saveThemePreference(R.style.Color_Theme_ResourceProject);
 			recreate();
 		}
 		return super.onOptionsItemSelected(item);
-
-
 	}
 
 	private void saveThemePreference(int themeId) {
@@ -166,7 +167,7 @@ public class MainActivity extends AppCompatActivity {
 		editor.apply();
 	}
 	
-	private void setLocale(Locale locale){
+	/*private void setLocale(Locale locale){
 		Locale.setDefault(locale);
 		Resources resources = getResources();
 		Configuration configuration = resources.getConfiguration();
@@ -175,12 +176,12 @@ public class MainActivity extends AppCompatActivity {
 		/*getBaseContext().getResources().updateConfiguration(
 				configuration, resources.getDisplayMetrics()
 		);
-		recreate();*/
+		recreate();
 		//2
 		/*Intent 	intent = new Intent(this, MainActivity.class);
 		startActivity(intent);
-		finish();*/
-	}
+		finish();
+	}*/
 
 		/*
 	@Override

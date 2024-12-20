@@ -1,14 +1,16 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Base.Theme.ResourceProject" parent="Theme.Material3.DayNight">
+    <style name="Light.Theme.ResourceProject" parent="Theme.Material3.DayNight">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
-
         <item name="colorPrimary">@color/Light.Background</item>
-        <item name="colorSecondary">@color/Dark.Background</item>
+        <item name="colorOnPrimary">#F8F6F6</item>
+        <item name="colorSecondary">@color/Light.Background</item>
         <item name="android:textSize">24sp</item>
         <item name="android:background">#DBCBCB</item>
     </style>
 
-    <style name="Theme.ResourceProject" parent="Base.Theme.ResourceProject" />
+    <style name="Light.ResourceProject" parent="Light.Theme.ResourceProject">
+        <!--item name="colorOnPrimary">#FAFAF7</item-->
+    </style>
 </resources>
