@@ -15,6 +15,7 @@ import android.widget.Toast;
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -22,7 +23,11 @@ import androidx.core.view.WindowInsetsCompat;
 import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
-	
+
+	private static final String SETTINGS = "settings";
+	private static final String THEME = "theme";
+	public static final String LOCALE = "locale";
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		Log.d("t", "onCreate: ");
@@ -36,10 +41,13 @@ public class MainActivity extends AppCompatActivity {
 			getSupportActionBar().setTitle(R.string.app_name);
 		}
 		//Theme
-		setTheme(R.style.Light_Theme_ResourceProject);
+		int themeId = getSharedPreferences(SETTINGS, MODE_PRIVATE)
+				.getInt(THEME, R.style.Light_ResourceProject);
+		//Встановлення теми
+		setTheme(themeId);
 
 		super.onCreate(savedInstanceState);
-		setTheme(getSavedThemePreference());
+		//setTheme(getSavedThemePreference());
 		setContentView(R.layout.activity_main);
 		EdgeToEdge.enable(this);
 		setContentView(R.layout.activity_main);
@@ -55,25 +63,34 @@ public class MainActivity extends AppCompatActivity {
 		SharedPreferences.Editor editor = preferences.edit();
 		editor.putInt("theme_id", themeId);
 		editor.apply();
-	}*/
+	}
 	private int getSavedThemePreference() {
 		SharedPreferences preferences = getSharedPreferences("theme_prefs", MODE_PRIVATE);
 		return preferences.getInt("theme_id", R.style.Light_Theme_ResourceProject);
-	}
+	}*/
 
 
 	@Override
 	protected void attachBaseContext(Context contextBase) {
 		//Приклад отримання налаштувань з SharedPreferences
-		SharedPreferences preferences = contextBase.getSharedPreferences("settings", MODE_PRIVATE);
-		String localeTag = preferences.getString("locale", Locale.ENGLISH.toLanguageTag());
+		SharedPreferences preferences = contextBase.getSharedPreferences(SETTINGS, MODE_PRIVATE);
+		String localeTag = preferences.getString(LOCALE, Locale.ENGLISH.toLanguageTag());
 		//Новий спосіб встановлення локалізації
 		Locale locale = Locale.forLanguageTag(localeTag);
 		Locale.setDefault(locale);
 		Configuration configuration = new Configuration();
 		configuration.setLocale(locale);
 		Context newContext = contextBase.createConfigurationContext(configuration);
-
+		int themeId = preferences.getInt(THEME, R.style.Light_Theme_ResourceProject);
+		if (themeId == R.style.Light_Theme_ResourceProject) {
+			AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+		}
+		else if (themeId == R.style.Dark_ResourceProject) {
+			AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+		}
+		else if (themeId == R.style.Color_Theme_ResourceProject) {
+			AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+		}
 		//
 		super.attachBaseContext(newContext);
 	}
@@ -91,7 +108,8 @@ public class MainActivity extends AppCompatActivity {
 	public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 		int itemId = item.getItemId();
 		//Shared Pref
-		SharedPreferences preferences = getSharedPreferences("settings", MODE_PRIVATE);
+		SharedPreferences preferences =
+				getSharedPreferences("settings", MODE_PRIVATE);
 		SharedPreferences.Editor editor = preferences.edit();
 		//Orientations
 		if (itemId == R.id.portrait) {
@@ -122,7 +140,7 @@ public class MainActivity extends AppCompatActivity {
 		}
 		else if (itemId == R.id.sensor) {
 		}
-		//Locale
+		//Locales
 		else if (itemId == R.id.enLocaleMenu) {
 			editor.putString("locale", Locale.ENGLISH.toLanguageTag());
 			editor.apply();
@@ -143,29 +161,27 @@ public class MainActivity extends AppCompatActivity {
 		}
 		//Themes...
 		else if (itemId == R.id.lightThemeMenu) {
-			setTheme(R.style.Light_ResourceProject);
-			saveThemePreference(R.style.Light_ResourceProject);
+			editor.putInt(THEME, R.style.Light_Theme_ResourceProject).apply();
 			recreate();
-			}
+		}
 		else if (itemId == R.id.darkThemeMenu) {
-			setTheme(R.style.Dark_ResourceProject);
-			saveThemePreference(R.style.Dark_ResourceProject);
+			editor.putInt(THEME, R.style.Dark_Theme_ResourceProject).apply();
 			recreate();
 		}
 		else if (itemId == R.id.coloredThemeMenu) {
-			setTheme(R.style.Color_Theme_ResourceProject);
-			saveThemePreference(R.style.Color_Theme_ResourceProject);
+			editor.putInt(THEME, R.style.Color_Theme_ResourceProject).apply();
 			recreate();
 		}
 		return super.onOptionsItemSelected(item);
 	}
 
+	/*
 	private void saveThemePreference(int themeId) {
 		SharedPreferences preferences = getSharedPreferences("theme_prefs", MODE_PRIVATE);
 		SharedPreferences.Editor editor = preferences.edit();
 		editor.putInt("theme_id", themeId);
 		editor.apply();
-	}
+	}*/
 	
 	/*private void setLocale(Locale locale){
 		Locale.setDefault(locale);

@@ -13,4 +13,19 @@
     <style name="Light.ResourceProject" parent="Light.Theme.ResourceProject">
         <!--item name="colorOnPrimary">#FAFAF7</item-->
     </style>
+
+    <!--DarkTheme >>>-->
+    <style name="Dark.Theme.ResourceProject" parent="Theme.Material3.DayNight">
+        <!-- Customize your dark theme here. -->
+        <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
+        <item name="colorPrimary">@color/Dark.Background</item>
+        <item name="colorOnPrimary">#101010</item>
+        <item name="colorSecondary">@color/Dark.Background</item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:background">#896969</item>
+    </style>
+
+    <style name="Dark.ResourceProject" parent="Dark.Theme.ResourceProject">
+        <!--item name="colorOnPrimary">#474442</item-->
+    </style>
 </resources>
